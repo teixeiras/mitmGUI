@@ -7,7 +7,29 @@ import Mitmgui.Models.OperationModel;
  */
 public class FlowModel extends OperationModel {
 
+    public class ErrorModel {
+        private String msg;
+        private String timestamp;
+
+        public String getMsg() {
+            return msg;
+        }
+
+        public void setMsg(String msg) {
+            this.msg = msg;
+        }
+
+        public String getTimestamp() {
+            return timestamp;
+        }
+
+        public void setTimestamp(String timestamp) {
+            this.timestamp = timestamp;
+        }
+    }
     private Boolean intercepted;
+
+    private ErrorModel error;
 
     private String type;
 
@@ -85,5 +107,13 @@ public class FlowModel extends OperationModel {
 
     public void setResponse(ResponseModel response) {
         this.response = response;
+    }
+
+    public ErrorModel getError() {
+        return error;
+    }
+
+    public void setError(ErrorModel error) {
+        this.error = error;
     }
 }

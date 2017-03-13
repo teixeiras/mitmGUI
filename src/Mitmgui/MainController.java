@@ -2,46 +2,73 @@ package Mitmgui;
 
 import Mitmgui.Managers.FlowsManager;
 import Mitmgui.Managers.PreferencesManager;
+import Mitmgui.Models.Events.EventsModel;
 import Mitmgui.Models.Flows.FlowModel;
+import Mitmgui.Models.SettingsModel;
+import Mitmgui.Network.Requests.EventsRequests;
+import Mitmgui.Network.Requests.FlowsRequests;
+import Mitmgui.Network.Requests.SettingsRequest;
 import Mitmgui.Network.UpdatesSocketHandler;
 import com.sun.tools.javac.comp.Flow;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import org.pmw.tinylog.Logger;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
 
 
-public class MainController implements Initializable {
+public class MainController{
     Stage stage;
     UpdatesSocketHandler socketHandler;
     public MainController() {
 
     }
 
-    @FXML protected TableView flowTable;
+    @FXML
+    private TableView flowTable;
 
     @FXML
     protected void initialize(){
         populateFlowTable();
-
-    };
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
         // Implementing the Initializable interface means that this method
         // will be called when the controller instance is created
         socketHandler = new UpdatesSocketHandler();
         socketHandler.connect();
+        try {
+            SettingsRequest sRequest = new SettingsRequest();
+            SettingsModel settings = sRequest.getSettings();
+        } catch (IOException e) {
+            Logger.error(e);
+        }
 
-    }
+        try {
+            FlowsRequests sRequest = new FlowsRequests ();
+            FlowModel[] flows= sRequest.getFlows();
+            for (FlowModel model : flows) {
+                FlowsManager.shared.addFlow(model);
+            }
+            flowTable.refresh();
+        } catch (IOException e) {
+            Logger.error(e);
+        }
+
+        try {
+            EventsRequests sRequest = new EventsRequests ();
+            EventsModel[] events= sRequest.getEvents();
+            Logger.debug(events);
+        } catch (IOException e) {
+            Logger.error(e);
+        }
+
+    };
+
+
 
     public void setStageAndSetupListeners(Stage stage) {
 
@@ -62,10 +89,9 @@ public class MainController implements Initializable {
         TableColumn sizeCol = new TableColumn("Size");
         TableColumn timeCol = new TableColumn("Time");
 
-        flowTable.getColumns().removeAll();
         flowTable.getColumns().addAll(pathCol, methodCol, statusCol, sizeCol, timeCol);
-        flowTable.setItems(FlowsManager.shared.getData());
 
+        FlowsManager.shared.setTable(flowTable);
         flowTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {

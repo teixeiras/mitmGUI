@@ -42,7 +42,7 @@ public class UpdatesSocketHandler {
                     Logger.info("Message received:" + message);
                     try {
                         SimplePackageModel simplePackageModel = (SimplePackageModel)mapper.readValue(message, SimplePackageModel.class);
-                        if (simplePackageModel.getResource().equals(EVENTS)) {
+                        if (simplePackageModel.getResource().equals(FLOWS)) {
                             FlowPackage flowPackage = (FlowPackage)mapper.readValue(message, FlowPackage.class);
                             FlowsManager.shared.addFlow(flowPackage);
 

@@ -26,7 +26,7 @@ public class Main extends Application {
 
         } catch (Exception e) {
             AlertHelper.exception("Error loading UI", "We could not load fxml UI for main", e);
-            Logger.error(e.getMessage());
+            Logger.error(e);
         }
 
     }

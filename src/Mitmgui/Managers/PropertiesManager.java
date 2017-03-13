@@ -1,6 +1,7 @@
 package Mitmgui.Managers;
 
 import Mitmgui.MainController;
+import org.pmw.tinylog.Logger;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,13 +23,19 @@ public class PropertiesManager {
         try {
             String filename = "config.properties";
             input = MainController.class.getClassLoader().getResourceAsStream(filename);
-        }finally {
+            prop.load(input);
+        } catch (IOException e) {
+            Logger.error(e);
+        } finally {
             if (input != null) {
                 try {
                     input.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Logger.error(e);
                 }
+            } else {
+                Logger.error("Could not find config properties");
+
             }
 
         }

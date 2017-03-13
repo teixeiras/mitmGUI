@@ -1,8 +1,11 @@
 package Mitmgui.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Created by teixeiras on 12/03/2017.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SimplePackageModel {
 
     private String resource;

@@ -1,8 +1,11 @@
 package Mitmgui.Network;
 
+import Mitmgui.Managers.PropertiesManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.pmw.tinylog.Logger;
 
 import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
 
@@ -23,15 +26,28 @@ public class JSONReader<T> {
 
     public <T> T readJsonFromUrl(String url, Class base) throws IOException{
         ObjectMapper mapper = new ObjectMapper();
-        InputStream is = new URL(url).openStream();
+        HttpURLConnection connection;
         try {
-            BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-            String jsonText = readAll(rd);
-            T json=  (T)mapper.readValue(url, base);
-            return json;
-        } finally {
-            is.close();
+            connection = (HttpURLConnection)(new URL(url).openConnection());
+
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Connection", "Keep-Alive");
+            connection.setRequestProperty("Cookie", CookiesManager.validCookie());
+            connection.connect();
+            try {
+                BufferedReader rd = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String jsonText = readAll(rd);
+                Logger.debug(jsonText);
+                T json = (T)mapper.readValue(jsonText, base);
+                return json;
+            } finally {
+                connection.getInputStream().close();
+            }
+        } catch (IOException e) {
+            Logger.error(e);
         }
+
+        return null;
     }
 
 }

@@ -3,6 +3,7 @@
     <properties maven-id="org.tinylog:tinylog:1.2" />
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/org/tinylog/tinylog/1.2/tinylog-1.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/tinylog/tinylog/1.2/tinylog-1.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -8,6 +8,23 @@ public class ConnectionModel {
     {
         private String[] address;
         private Boolean use_ipv6;
+
+        public String[] getAddress() {
+            return address;
+        }
+
+        public void setAddress(String[] address) {
+            this.address = address;
+        }
+
+        public Boolean getUse_ipv6() {
+            return use_ipv6;
+        }
+
+        public void setUse_ipv6(Boolean use_ipv6) {
+            this.use_ipv6 = use_ipv6;
+        }
+
         public Address()
         {
         }
