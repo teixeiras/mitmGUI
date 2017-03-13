@@ -1,4 +1,4 @@
-package Mitmgui.Models;
+package Mitmgui.Models.Flows;
 
 /**
  * Created by teixeiras on 12/03/2017.

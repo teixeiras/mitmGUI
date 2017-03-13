@@ -1,4 +1,4 @@
-package Mitmgui.Models;
+package Mitmgui.Models.Flows;
 
 import java.util.List;
 

@@ -1,9 +1,12 @@
-package Mitmgui.Models;
+package Mitmgui.Models.Flows;
+
+import Mitmgui.Models.OperationModel;
 
 /**
  * Created by teixeiras on 12/03/2017.
  */
-public class FlowModel {
+public class FlowModel extends OperationModel {
+
     private Boolean intercepted;
 
     private String type;

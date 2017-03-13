@@ -1,0 +1,7 @@
+2017-03-13 16:54:18 [Thread-5] Mitmgui.Network.UpdatesSocketHandler.onError()
+ERROR: java.nio.channels.UnresolvedAddressException
+	at sun.nio.ch.Net.checkAddress(Net.java:101)
+	at sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:622)
+	at org.java_websocket.client.WebSocketClient.interruptableRun(WebSocketClient.java:210)
+	at org.java_websocket.client.WebSocketClient.run(WebSocketClient.java:188)
+	at java.lang.Thread.run(Thread.java:745)

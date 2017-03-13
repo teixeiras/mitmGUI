@@ -3,11 +3,10 @@ package Mitmgui.Models;
 /**
  * Created by teixeiras on 12/03/2017.
  */
-public class PackageModel {
+public class SimplePackageModel {
 
     private String resource;
     private String cmd;
-
     public String getResource() {
         return resource;
     }
