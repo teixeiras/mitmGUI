@@ -2,10 +2,16 @@ package Mitmgui;
 
 import Mitmgui.Managers.FlowsManager;
 import Mitmgui.Managers.PreferencesManager;
+import Mitmgui.Models.Flows.FlowModel;
 import Mitmgui.Network.UpdatesSocketHandler;
+import com.sun.tools.javac.comp.Flow;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
@@ -59,6 +65,18 @@ public class MainController implements Initializable {
         flowTable.getColumns().removeAll();
         flowTable.getColumns().addAll(pathCol, methodCol, statusCol, sizeCol, timeCol);
         flowTable.setItems(FlowsManager.shared.getData());
+
+        flowTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
+                //Check whether item is selected and set value of selected item to Label
+                if(flowTable.getSelectionModel().getSelectedItem() != null)
+                {
+                    FlowModel model = (FlowModel) flowTable.getSelectionModel().getSelectedItem();
+                    System.out.println("Selected Value" + model);
+                }
+            }
+        });
 
     }
 

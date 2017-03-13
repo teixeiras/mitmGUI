@@ -1,5 +1,6 @@
 package Mitmgui.Network;
 import Mitmgui.Managers.FlowsManager;
+import Mitmgui.Managers.PropertiesManager;
 import Mitmgui.Models.EventPackage;
 import Mitmgui.Models.FlowPackage;
 import Mitmgui.Models.Flows.FlowModel;
@@ -34,11 +35,11 @@ public class UpdatesSocketHandler {
             HashMap<String, String> header = new HashMap<String, String>();
             header.put("Cookie", CookiesManager.validCookie());
 
-            mWs = new WebSocketClient( new URI( "ws://socket.example.com:1234" ), new Draft_10(), header, TIMEOUT)
+            mWs = new WebSocketClient( new URI( "ws://"+ PropertiesManager.shared.getURL()+"/updates"), new Draft_10(), header, TIMEOUT)
             {
                 @Override
                 public void onMessage( String message ) {
-                    Logger.info("Message received:" +message);
+                    Logger.info("Message received:" + message);
                     try {
                         SimplePackageModel simplePackageModel = (SimplePackageModel)mapper.readValue(message, SimplePackageModel.class);
                         if (simplePackageModel.getResource().equals(EVENTS)) {
@@ -83,14 +84,6 @@ public class UpdatesSocketHandler {
             connect();
 
         }
-
-        /*JSONObject obj = new JSONObject();
-        obj.put("event", "addChannel");
-        obj.put("channel", "ok_btccny_ticker");
-        String message = obj.toString();
-        //send message
-        mWs.send(message);
-    */
 
     }
 

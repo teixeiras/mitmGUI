@@ -9,10 +9,10 @@ import java.nio.charset.Charset;
 /**
  * Created by fteixeira on 13/03/2017.
  */
-public class JSONReader {
+public class JSONReader<T> {
 
 
-    private static String readAll(Reader rd) throws IOException {
+    private String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
         while ((cp = rd.read()) != -1) {
@@ -21,7 +21,7 @@ public class JSONReader {
         return sb.toString();
     }
 
-    public static <T> T readJsonFromUrl(String url, Class base) throws IOException{
+    public <T> T readJsonFromUrl(String url, Class base) throws IOException{
         ObjectMapper mapper = new ObjectMapper();
         InputStream is = new URL(url).openStream();
         try {

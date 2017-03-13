@@ -1,5 +1,6 @@
 package Mitmgui.Network;
 
+import Mitmgui.Managers.PropertiesManager;
 import Mitmgui.UI.AlertHelper;
 import org.pmw.tinylog.Logger;
 
@@ -15,8 +16,9 @@ import java.util.List;
 public class CookiesManager {
     public static String validCookie() {
         try {
-            URLConnection connection = new URL("http://google.com").openConnection();
+            URLConnection connection = new URL("http://"+ PropertiesManager.shared.getURL()).openConnection();
             List<String> cookies = connection.getHeaderFields().get("Set-Cookie");
+            Logger.info("Cookie:" + cookies.get(0));
             return cookies.get(0);
         } catch(Exception e) {
             AlertHelper.exception("Error connecting server", "Could not connect into the mitmweb server", e);

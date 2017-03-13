@@ -12,6 +12,9 @@ import java.util.Properties;
  * Created by fteixeira on 13/03/2017.
  */
 public class PropertiesManager {
+    public static PropertiesManager shared = new PropertiesManager();
+
+    private static String HOST_KEY = "host";
     Properties prop = new Properties();
 
     public PropertiesManager() {
@@ -19,11 +22,6 @@ public class PropertiesManager {
         try {
             String filename = "config.properties";
             input = MainController.class.getClassLoader().getResourceAsStream(filename);
-
-            // set the properties value
-            prop.setProperty("database", "localhost");
-
-
         }finally {
             if (input != null) {
                 try {
@@ -34,5 +32,10 @@ public class PropertiesManager {
             }
 
         }
+    }
+
+    public String getURL() {
+
+        return prop.getProperty(HOST_KEY);
     }
 }
