@@ -17,7 +17,7 @@ public class FlowsManager {
     private static String CMD_UPDATE = "update";
     private static String CMD_ADD = "add";
 
-    private static FlowsManager shared = new FlowsManager();
+    public static FlowsManager shared = new FlowsManager();
 
     private final ObservableList<FlowModel> data = FXCollections.observableArrayList();
     private TableView table;

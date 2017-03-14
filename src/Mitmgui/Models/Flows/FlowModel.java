@@ -1,6 +1,10 @@
 package Mitmgui.Models.Flows;
 
 import Mitmgui.Models.OperationModel;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * Created by teixeiras on 12/03/2017.
@@ -44,6 +48,7 @@ public class FlowModel extends OperationModel {
     private RequestModel request;
 
     private ResponseModel response;
+
 
     public Boolean getIntercepted() {
         return intercepted;
@@ -116,4 +121,45 @@ public class FlowModel extends OperationModel {
     public void setError(ErrorModel error) {
         this.error = error;
     }
+
+
+    private StringProperty path= new SimpleStringProperty(this, "path");;
+    public final StringProperty pathProperty(){
+
+        path.set(request.getPath());
+        return path;
+    }
+
+    private StringProperty method = new SimpleStringProperty(this, "method");
+    public final StringProperty methodProperty(){
+
+        method.set(this.request.getMethod());
+        return method;
+    }
+
+    private StringProperty status= new SimpleStringProperty(this, "status");
+    public final StringProperty statusProperty(){
+
+        status.set(this.getIntercepted()+"");
+        return status;
+    }
+
+    private StringProperty size = new SimpleStringProperty(this, "size");
+    public final StringProperty sizeProperty(){
+
+        if (response != null) {
+            size.set(response.getContentLength());
+        }
+        return size;
+    }
+
+    private StringProperty time= new SimpleStringProperty(this, "time");
+    public final StringProperty timeProperty(){
+        if (response != null) {
+            time.set(response.getTimestamp_end() - response.getTimestamp_start() + "");
+        }
+        return time;
+    }
+
+
 }

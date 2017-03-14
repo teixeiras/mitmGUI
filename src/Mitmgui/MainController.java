@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.pmw.tinylog.Logger;
 
@@ -84,10 +85,29 @@ public class MainController{
     public void populateFlowTable(){
 
         TableColumn pathCol = new TableColumn("Path");
+        pathCol .setCellValueFactory(
+                new PropertyValueFactory<FlowModel,String>("path")
+        );
+
         TableColumn methodCol = new TableColumn("Method");
+        methodCol .setCellValueFactory(
+                new PropertyValueFactory<FlowModel,String>("method")
+        );
+
         TableColumn statusCol = new TableColumn("Status");
+        statusCol .setCellValueFactory(
+                new PropertyValueFactory<FlowModel,String>("status")
+        );
+
         TableColumn sizeCol = new TableColumn("Size");
+        sizeCol .setCellValueFactory(
+                new PropertyValueFactory<FlowModel,String>("size")
+        );
+
         TableColumn timeCol = new TableColumn("Time");
+        timeCol .setCellValueFactory(
+                new PropertyValueFactory<FlowModel,String>("time")
+        );
 
         flowTable.getColumns().addAll(pathCol, methodCol, statusCol, sizeCol, timeCol);
 
