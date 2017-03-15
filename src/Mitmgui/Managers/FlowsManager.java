@@ -14,6 +14,18 @@ import java.util.ListIterator;
  */
 public class FlowsManager {
 
+
+    private static String ADD = "FLOWS_ADD";
+    private static String UPDATE = "FLOWS_UPDATE";
+    private static String REMOVE = "FLOWS_REMOVE";
+    private static String RECEIVE = "FLOWS_RECEIVE";
+    private static String SELECT = "FLOWS_SELECT";
+    private static String SET_FILTER = "FLOWS_SET_FILTER";
+    private static String SET_SORT = "FLOWS_SET_SORT";
+    private static String SET_HIGHLIGHT = "FLOWS_SET_HIGHLIGHT";
+    private static String REQUEST_ACTION = "FLOWS_REQUEST_ACTION";
+
+
     private static String CMD_UPDATE = "update";
     private static String CMD_ADD = "add";
 
