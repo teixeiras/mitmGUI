@@ -1,6 +1,7 @@
 package Mitmgui;
 
 import Mitmgui.Managers.PreferencesManager;
+import Mitmgui.Managers.TrayIconManager;
 import Mitmgui.UI.AlertHelper;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -26,6 +27,7 @@ public class Main extends Application {
             MainController controller = (MainController)loader.getController();
             controller.setStageAndSetupListeners(primaryStage);
 
+            new TrayIconManager();
 
         } catch (Exception e) {
             AlertHelper.exception("Error loading UI", "We could not load fxml UI for main", e);
