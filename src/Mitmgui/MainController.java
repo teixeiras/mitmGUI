@@ -45,6 +45,46 @@ public class MainController{
     private TableView flowTable;
 
     @FXML
+    private void exitAction(ActionEvent event) {
+        System.exit(0);
+    }
+
+    @FXML
+    private void playAllAction(ActionEvent event) {
+        System.exit(0);
+    }
+
+    @FXML
+    private void downloadAction(ActionEvent event) {
+        System.exit(0);
+    }
+
+    @FXML
+    private void duplicateAction(ActionEvent event) {
+        System.exit(0);
+    }
+
+    @FXML
+    private void replayAction(ActionEvent event) {
+        System.exit(0);
+    }
+
+    @FXML
+    private void revertAction(ActionEvent event) {
+        System.exit(0);
+    }
+
+    @FXML
+    private void deleteAction(ActionEvent event) {
+        System.exit(0);
+    }
+
+    @FXML
+    private void stopAllAction(ActionEvent event) {
+        System.exit(0);
+    }
+
+    @FXML
     private void installCertifcateDialog(ActionEvent event) {
         // Button was clicked, do something...
         final Stage dialog = new Stage();

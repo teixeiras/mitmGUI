@@ -1,0 +1,11 @@
+.toggle-button {
+    -fx-icon-code: mdi-play;
+    -fx-icon-color: red;
+    -fx-icon-size: 2;
+}
+
+.toggle-button:selected {
+    -fx-icon-code: mdi-play;
+    -fx-icon-color: grey;
+    -fx-icon-size: 2;
+}
