@@ -26,3 +26,105 @@ INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 46256
 INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625687440, "message": "127.0.0.1:50157: Establish TLS with client", "level": "debug"}}
 2017-03-15 00:21:18 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
 INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625612304, "message": "127.0.0.1:50157: clientdisconnect", "level": "info"}}
+2017-03-15 00:26:39 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625688336, "message": "127.0.0.1:50213: clientconnect", "level": "info"}}
+2017-03-15 00:26:39 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625772840, "message": "127.0.0.1:50213: Set new server address: ('live.github.com', 443)", "level": "debug"}}
+2017-03-15 00:26:39 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625688056, "message": "127.0.0.1:50213: Establish TLS with client", "level": "debug"}}
+2017-03-15 00:26:39 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625688280, "message": "127.0.0.1:50213: Failed to send error response to client: ClientHandshakeException('Cannot establish TLS with client (sni: live.github.com): TlsException(\"(-1, \\'Unexpected EOF\\')\",)',)", "level": "debug"}}
+2017-03-15 00:26:39 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625688672, "message": "127.0.0.1:50213: clientdisconnect", "level": "info"}}
+2017-03-15 00:26:41 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625611744, "message": "127.0.0.1:50216: clientconnect", "level": "info"}}
+2017-03-15 00:26:41 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4626072632, "message": "127.0.0.1:50216: Set new server address: ('live.github.com', 443)", "level": "debug"}}
+2017-03-15 00:26:41 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625628352, "message": "127.0.0.1:50216: Establish TLS with client", "level": "debug"}}
+2017-03-15 00:26:41 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625625664, "message": "127.0.0.1:50216: Failed to send error response to client: ClientHandshakeException('Cannot establish TLS with client (sni: live.github.com): TlsException(\"(-1, \\'Unexpected EOF\\')\",)',)", "level": "debug"}}
+2017-03-15 00:26:41 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625627008, "message": "127.0.0.1:50216: clientdisconnect", "level": "info"}}
+2017-03-15 00:26:45 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625686032, "message": "127.0.0.1:50219: clientconnect", "level": "info"}}
+2017-03-15 00:26:45 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625775248, "message": "127.0.0.1:50219: Set new server address: ('live.github.com', 443)", "level": "debug"}}
+2017-03-15 00:26:45 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625776200, "message": "127.0.0.1:50219: Establish TLS with client", "level": "debug"}}
+2017-03-15 00:26:45 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625732272, "message": "127.0.0.1:50219: Failed to send error response to client: ClientHandshakeException('Cannot establish TLS with client (sni: live.github.com): TlsException(\"(-1, \\'Unexpected EOF\\')\",)',)", "level": "debug"}}
+2017-03-15 00:26:45 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625684632, "message": "127.0.0.1:50219: clientdisconnect", "level": "info"}}
+2017-03-15 00:26:52 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625732832, "message": "127.0.0.1:50223: clientconnect", "level": "info"}}
+2017-03-15 00:26:52 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625775024, "message": "127.0.0.1:50223: Set new server address: ('live.github.com', 443)", "level": "debug"}}
+2017-03-15 00:26:52 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625774128, "message": "127.0.0.1:50223: Establish TLS with client", "level": "debug"}}
+2017-03-15 00:26:52 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625625552, "message": "127.0.0.1:50223: Failed to send error response to client: ClientHandshakeException('Cannot establish TLS with client (sni: live.github.com): TlsException(\"(-1, \\'Unexpected EOF\\')\",)',)", "level": "debug"}}
+2017-03-15 00:26:52 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625689232, "message": "127.0.0.1:50223: clientdisconnect", "level": "info"}}
+2017-03-15 00:27:07 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625611464, "message": "127.0.0.1:50226: clientconnect", "level": "info"}}
+2017-03-15 00:27:07 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625731712, "message": "127.0.0.1:50226: Set new server address: ('live.github.com', 443)", "level": "debug"}}
+2017-03-15 00:27:07 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625734568, "message": "127.0.0.1:50226: Establish TLS with client", "level": "debug"}}
+2017-03-15 00:27:07 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625735632, "message": "127.0.0.1:50226: Failed to send error response to client: ClientHandshakeException('Cannot establish TLS with client (sni: live.github.com): TlsException(\"(-1, \\'Unexpected EOF\\')\",)',)", "level": "debug"}}
+2017-03-15 00:27:07 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625611632, "message": "127.0.0.1:50226: clientdisconnect", "level": "info"}}
+2017-03-15 00:27:37 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4624294464, "message": "127.0.0.1:50233: clientconnect", "level": "info"}}
+2017-03-15 00:27:37 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4624296536, "message": "127.0.0.1:50233: Set new server address: ('live.github.com', 443)", "level": "debug"}}
+2017-03-15 00:27:37 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4624297488, "message": "127.0.0.1:50233: Establish TLS with client", "level": "debug"}}
+2017-03-15 00:27:37 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4624294072, "message": "127.0.0.1:50233: Failed to send error response to client: ClientHandshakeException('Cannot establish TLS with client (sni: live.github.com): TlsException(\"(-1, \\'Unexpected EOF\\')\",)',)", "level": "debug"}}
+2017-03-15 00:27:37 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4624296984, "message": "127.0.0.1:50233: clientdisconnect", "level": "info"}}
+2017-03-15 00:28:07 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625609616, "message": "127.0.0.1:50245: clientconnect", "level": "info"}}
+2017-03-15 00:28:07 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625626896, "message": "127.0.0.1:50245: Set new server address: ('live.github.com', 443)", "level": "debug"}}
+2017-03-15 00:28:07 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4624355680, "message": "127.0.0.1:50245: Establish TLS with client", "level": "debug"}}
+2017-03-15 00:28:07 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4624357024, "message": "127.0.0.1:50245: Failed to send error response to client: ClientHandshakeException('Cannot establish TLS with client (sni: live.github.com): TlsException(\"(-1, \\'Unexpected EOF\\')\",)',)", "level": "debug"}}
+2017-03-15 00:28:07 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625689288, "message": "127.0.0.1:50245: clientdisconnect", "level": "info"}}
+2017-03-15 00:28:46 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4624357528, "message": "127.0.0.1:50251: clientconnect", "level": "info"}}
+2017-03-15 00:28:46 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4624363704, "message": "127.0.0.1:50251: Set new server address: ('d.dropbox.com', 443)", "level": "debug"}}
+2017-03-15 00:28:46 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4624364656, "message": "127.0.0.1:50251: Establish TLS with client", "level": "debug"}}
+2017-03-15 00:28:46 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4624359040, "message": "127.0.0.1:50251: clientdisconnect", "level": "info"}}
+2017-03-15 00:28:47 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4624365944, "message": "127.0.0.1:50253: clientconnect", "level": "info"}}
+2017-03-15 00:28:47 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4624404888, "message": "127.0.0.1:50253: Set new server address: ('d.dropbox.com', 443)", "level": "debug"}}
+2017-03-15 00:28:47 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4624364264, "message": "127.0.0.1:50253: Establish TLS with client", "level": "debug"}}
+2017-03-15 00:28:47 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4624367456, "message": "127.0.0.1:50253: clientdisconnect", "level": "info"}}
+2017-03-15 00:28:53 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625731768, "message": "127.0.0.1:50256: clientconnect", "level": "info"}}
+2017-03-15 00:28:53 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4624358592, "message": "127.0.0.1:50256: Set new server address: ('notify.dropbox.com', 443)", "level": "debug"}}
+2017-03-15 00:28:53 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4624356240, "message": "127.0.0.1:50256: Establish TLS with client", "level": "debug"}}
+2017-03-15 00:28:53 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4625611352, "message": "127.0.0.1:50256: clientdisconnect", "level": "info"}}
+2017-03-15 00:28:54 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4624405280, "message": "127.0.0.1:50258: clientconnect", "level": "info"}}
+2017-03-15 00:28:54 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4624407800, "message": "127.0.0.1:50258: Set new server address: ('notify.dropbox.com', 443)", "level": "debug"}}
+2017-03-15 00:28:54 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4624412912, "message": "127.0.0.1:50258: Establish TLS with client", "level": "debug"}}
+2017-03-15 00:28:54 [Thread-6] Mitmgui.Network.UpdatesSocketHandler.onMessage()
+INFO: Message received:{"resource": "events", "cmd": "add", "data": {"id": 4624408248, "message": "127.0.0.1:50258: clientdisconnect", "level": "info"}}
