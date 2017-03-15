@@ -1,5 +1,6 @@
 package Mitmgui;
 
+import Mitmgui.Managers.AppManager;
 import Mitmgui.Managers.FlowsManager;
 import Mitmgui.Managers.PreferencesManager;
 import Mitmgui.Models.Events.EventsModel;
@@ -13,11 +14,20 @@ import com.sun.tools.javac.comp.Flow;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
-import javafx.scene.control.TableView;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.pmw.tinylog.Logger;
 
@@ -33,6 +43,30 @@ public class MainController{
 
     @FXML
     private TableView flowTable;
+
+    @FXML
+    private void installCertifcateDialog(ActionEvent event) {
+        // Button was clicked, do something...
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.initOwner(stage);
+        VBox dialogVbox = new VBox(20);
+        WebView webView = new WebView();
+        final WebEngine webEngine = webView.getEngine();
+        webEngine.load("http://mitm.it/");
+        HBox linkBox = new HBox(20);
+
+        Label label = new Label();
+        label.setText("http://mitm.it/");
+        Image image = AppManager.getQRCode("http://mitm.it/");
+        ImageView imageView = new ImageView();
+        imageView.setImage(image);
+        linkBox.getChildren().addAll(imageView, label);
+        dialogVbox.getChildren().addAll(linkBox, webView);
+        Scene dialogScene = new Scene(dialogVbox, 450, 600);
+        dialog.setScene(dialogScene);
+        dialog.show();
+    }
 
     @FXML
     protected void initialize(){
@@ -72,7 +106,7 @@ public class MainController{
 
 
     public void setStageAndSetupListeners(Stage stage) {
-
+        this.stage = stage;
         stage.widthProperty().addListener((obs, oldVal, newVal) -> {
             PreferencesManager.shared.setMainWidth(newVal.intValue());
         });

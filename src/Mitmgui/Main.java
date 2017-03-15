@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.pmw.tinylog.Logger;
@@ -20,6 +21,8 @@ public class Main extends Application {
             primaryStage.setTitle("Hello World");
             primaryStage.setScene(new Scene(root, PreferencesManager.shared.getMainWidth(), PreferencesManager.shared.getMainHeight()));
             primaryStage.show();
+            primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/icon.png")));
+
             MainController controller = (MainController)loader.getController();
             controller.setStageAndSetupListeners(primaryStage);
 
