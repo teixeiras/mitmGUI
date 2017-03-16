@@ -23,7 +23,10 @@ public class Main extends Application {
             primaryStage.setScene(new Scene(root, PreferencesManager.shared.getMainWidth(), PreferencesManager.shared.getMainHeight()));
             primaryStage.show();
             primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/icon.png")));
-
+            primaryStage.setOnCloseRequest(event -> {
+                System.out.println("Stage is closing");
+                System.exit(0);
+            });
             MainController controller = (MainController)loader.getController();
             controller.setStageAndSetupListeners(primaryStage);
 

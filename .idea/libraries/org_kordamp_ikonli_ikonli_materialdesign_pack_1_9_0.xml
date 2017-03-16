@@ -4,6 +4,8 @@
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/org/kordamp/ikonli/ikonli-materialdesign-pack/1.9.0/ikonli-materialdesign-pack-1.9.0.jar!/" />
       <root url="jar://$MAVEN_REPOSITORY$/org/kordamp/ikonli/ikonli-core/1.9.0/ikonli-core-1.9.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/kordamp/ikonli/ikonli-materialdesign-pack/1.9.0/ikonli-materialdesign-pack-1.9.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/kordamp/ikonli/ikonli-core/1.9.0/ikonli-core-1.9.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

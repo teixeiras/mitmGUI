@@ -6,10 +6,13 @@ import Mitmgui.Managers.PreferencesManager;
 import Mitmgui.Models.Events.EventsModel;
 import Mitmgui.Models.Flows.FlowModel;
 import Mitmgui.Models.SettingsModel;
+import Mitmgui.Network.FetchAPI;
 import Mitmgui.Network.Requests.EventsRequests;
 import Mitmgui.Network.Requests.FlowsRequests;
 import Mitmgui.Network.Requests.SettingsRequest;
 import Mitmgui.Network.UpdatesSocketHandler;
+import Mitmgui.UI.AlertHelper;
+import Mitmgui.UI.FlowDetailsDataSource;
 import com.sun.tools.javac.comp.Flow;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -37,9 +40,14 @@ import java.io.IOException;
 public class MainController{
     Stage stage;
     UpdatesSocketHandler socketHandler;
+    FlowDetailsDataSource datasource;
+
     public MainController() {
 
     }
+
+    @FXML
+    ListView<FlowDetailsDataSource.FlowDetailsRow> detailsListVew;
 
     @FXML
     private TableView flowTable;
@@ -51,37 +59,39 @@ public class MainController{
 
     @FXML
     private void playAllAction(ActionEvent event) {
-        System.exit(0);
+        try {
+            new FetchAPI().resumeAll();
+        } catch (IOException e) {
+            AlertHelper.exception("Failed trying to resume", "The request resume has failed, try it again, later", e);
+        }
     }
 
     @FXML
     private void downloadAction(ActionEvent event) {
-        System.exit(0);
+        try {
+            new FetchAPI().downloadDump();
+        } catch (IOException e) {
+            AlertHelper.exception("Failed trying to download", "The request dump has failed, try it again, later", e);
+        }
     }
 
     @FXML
-    private void duplicateAction(ActionEvent event) {
-        System.exit(0);
-    }
-
-    @FXML
-    private void replayAction(ActionEvent event) {
-        System.exit(0);
-    }
-
-    @FXML
-    private void revertAction(ActionEvent event) {
-        System.exit(0);
-    }
-
-    @FXML
-    private void deleteAction(ActionEvent event) {
-        System.exit(0);
+    private void clearAction(ActionEvent event) {
+        try {
+            new FetchAPI().clear();
+            FlowsManager.shared.clear();
+        } catch (IOException e) {
+            AlertHelper.exception("Failed trying to clear Action", "The request clear has failed, try it again, later", e);
+        }
     }
 
     @FXML
     private void stopAllAction(ActionEvent event) {
-        System.exit(0);
+        try {
+            new FetchAPI().killAll();
+        } catch (IOException e) {
+            AlertHelper.exception("Failed trying to stop Action", "The request stop has failed, try it again, later", e);
+        }
     }
 
     @FXML
@@ -140,6 +150,7 @@ public class MainController{
         } catch (IOException e) {
             Logger.error(e);
         }
+        datasource = new FlowDetailsDataSource(new FlowModel(),detailsListVew);
 
     };
 

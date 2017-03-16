@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.TilePane?>
+
+
+<TilePane fx:id="cellContent" alignment="CENTER" prefColumns="2" prefRows="1" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="caption" contentDisplay="CENTER" graphicTextGap="2.0" style="-fx-background-color: black;" text="Label" />
+      <Label fx:id="value" alignment="CENTER_RIGHT" text="Label" />
+   </children>
+</TilePane>

@@ -67,4 +67,8 @@ public class FlowsManager {
         this.table = table;
         table.setItems(FlowsManager.shared.getData());
     }
+
+    public void clear() {
+        data.clear();
+    }
 }
