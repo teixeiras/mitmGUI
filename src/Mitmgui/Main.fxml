@@ -43,19 +43,9 @@
                <children>
                   <ToolBar prefHeight="40.0" prefWidth="200.0">
                      <items>
-                        <Button mnemonicParsing="false" onAction="#replayAction">
-                           <graphic>
-                              <org.kordamp.ikonli.javafx.FontIcon iconColor="blue" iconLiteral="mdi-replay" iconSize="32" />
-                           </graphic>
-                        </Button>
                         <Button mnemonicParsing="false" onAction="#clearAction">
                            <graphic>
-                              <org.kordamp.ikonli.javafx.FontIcon iconColor="yellow" iconLiteral="mdi-undo-variant" iconSize="32" />
-                           </graphic>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#deleteAction">
-                           <graphic>
-                              <org.kordamp.ikonli.javafx.FontIcon iconColor="red" iconLiteral="mdi-delete" iconSize="32" />
+                              <org.kordamp.ikonli.javafx.FontIcon iconColor="black" iconLiteral="mdi-table-column-remove" iconSize="32" />
                            </graphic>
                         </Button>
                         <Button mnemonicParsing="false" onAction="#downloadAction">
@@ -65,12 +55,12 @@
                         </Button>
                          <Button mnemonicParsing="false" onAction="#playAllAction">
                              <graphic>
-                                 <org.kordamp.ikonli.javafx.FontIcon iconColor="red" iconLiteral="mdi-pause" iconSize="32" />
+                                 <org.kordamp.ikonli.javafx.FontIcon iconColor="red" iconLiteral="mdi-play" iconSize="32" />
                              </graphic>
                          </Button>
                          <Button mnemonicParsing="false" onAction="#stopAllAction">
                              <graphic>
-                                 <org.kordamp.ikonli.javafx.FontIcon iconColor="green" iconLiteral="mdi-play" iconSize="32" />
+                                 <org.kordamp.ikonli.javafx.FontIcon iconColor="green" iconLiteral="mdi-pause" iconSize="32" />
                              </graphic>
                          </Button>
                      </items>

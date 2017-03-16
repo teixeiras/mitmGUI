@@ -8,22 +8,45 @@ import org.pmw.tinylog.Logger;
 import java.awt.*;
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 /**
  * Created by teixeiras on 12/03/2017.
  */
 public class FetchAPI {
+    public static URI appendUri(String uri, String appendQuery) throws URISyntaxException {
+        URI oldUri = new URI(uri);
 
-    private HttpURLConnection connection(String partialUrl) throws IOException {
+        String newQuery = oldUri.getQuery();
+        if (newQuery == null) {
+            newQuery = appendQuery;
+        } else {
+            newQuery += "&" + appendQuery;
+        }
+
+        URI newUri = new URI(oldUri.getScheme(), oldUri.getAuthority(),
+                oldUri.getPath(), newQuery, oldUri.getFragment());
+
+        return newUri;
+    }
+    private HttpURLConnection connection(String partialUrl, String type) throws IOException {
         try {
+            String url = "http://"+ PropertiesManager.shared.getURL()+partialUrl;
+            URI uri = null;
+            if (type.equals("GET")) {
+                URI uri = appendUri(url, )
+            }
+            HttpURLConnection connection = (HttpURLConnection)(new URL(uri).openConnection());
 
-            HttpURLConnection connection = (HttpURLConnection)(new URL("http://"+ PropertiesManager.shared.getURL()+partialUrl).openConnection());
+            Logger.info(connection.getURL().toString());
+            connection.setRequestMethod(type);
 
-            connection.setRequestMethod("GET");
             connection.setRequestProperty("Connection", "Keep-Alive");
             connection.setRequestProperty("Cookie", CookiesManager.validCookie());
             connection.connect();
+            Logger.info("Response:" + connection.getResponseCode());
             return connection;
 
         } catch (IOException e) {
@@ -33,17 +56,17 @@ public class FetchAPI {
     }
 
     public void GET(String url) throws IOException {
-        HttpURLConnection connection = this.connection(url);
+        HttpURLConnection connection = this.connection(url, "GET");
 
     }
 
     public void POST(String url) throws IOException {
-        HttpURLConnection connection = this.connection(url);
+        HttpURLConnection connection = this.connection(url, "POST");
 
     }
 
     public void PUT(String url,  byte[] data) throws IOException {
-        HttpURLConnection connection = this.connection(url);
+        HttpURLConnection connection = this.connection(url, "PUT");
 
     }
 
@@ -121,7 +144,7 @@ public class FetchAPI {
     public void  downloadDump() throws IOException {
 
         try{
-            HttpURLConnection connection = this.connection("/flows/dump");
+            HttpURLConnection connection = this.connection("/flows/dump", "POST");
             File file = new File(AppManager.homeDirectory(), "flow.dump");
             FileOutputStream fop = new FileOutputStream(file);
 
