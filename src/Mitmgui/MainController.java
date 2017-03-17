@@ -17,6 +17,7 @@ import Mitmgui.UI.FlowDetailsDataSource;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -32,6 +33,7 @@ import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import netscape.javascript.JSObject;
 import org.pmw.tinylog.Logger;
 
 import java.io.IOException;
@@ -42,10 +44,31 @@ public class MainController {
     UpdatesSocketHandler socketHandler;
     FlowDetailsDataSource datasource;
     EventsDataSource eventsDataSource;
+
     @FXML
     ListView<FlowDetailsDataSource.FlowDetailsRow> detailsListVew;
+
     @FXML
     private TableView flowTable;
+
+    @FXML
+    private VBox requestContainer;
+
+    @FXML
+    private VBox responseContainer;
+
+    @FXML
+    private ListView responseListView;
+
+    @FXML
+    private ListView requestListView;
+
+    @FXML
+    private WebView requestViewer;
+
+    @FXML
+    private WebView responseViewer;
+
     @FXML
     private ListView<EventsModel> eventsList;
 
@@ -207,9 +230,44 @@ public class MainController {
         }
         datasource = new FlowDetailsDataSource(new FlowModel(), detailsListVew);
         eventsDataSource = new EventsDataSource(eventsList);
+        loadWebviews();
+
     }
 
-    ;
+    public void loadWebviews() {
+        try {
+            final WebEngine requestWebEngine = responseViewer.getEngine();
+            final WebEngine responseWebEngine = requestViewer.getEngine();
+
+            responseWebEngine.load("http://localhost:22891/index.html");
+            requestWebEngine.load("http://localhost:22891/index.html");
+
+            responseWebEngine.getLoadWorker().stateProperty().addListener(new ChangeListener<Worker.State>() {
+                @Override
+                public void changed(ObservableValue<? extends Worker.State> ov, Worker.State t, Worker.State t1) {
+                    if (t1 == Worker.State.SUCCEEDED) {
+                        JSObject window = (JSObject) responseWebEngine.executeScript("window");
+                        window.setMember("app", new JavaApp());
+                    }
+                }
+            });
+
+            requestWebEngine.getLoadWorker().stateProperty().addListener(new ChangeListener<Worker.State>() {
+                @Override
+                public void changed(ObservableValue<? extends Worker.State> ov, Worker.State t, Worker.State t1) {
+                    if (t1 == Worker.State.SUCCEEDED) {
+                        JSObject window = (JSObject) requestWebEngine.executeScript("window");
+                        window.setMember("app", new JavaApp());
+                    }
+                }
+            });
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     public void setStageAndSetupListeners(Stage stage) {
@@ -291,4 +349,11 @@ public class MainController {
 
     }
 
+
+    public static class JavaApp {
+
+        public void onClick() {
+            System.out.println("Clicked");
+        }
+    }
 }

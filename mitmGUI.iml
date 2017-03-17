@@ -12,7 +12,6 @@
     <orderEntry type="library" name="com.fasterxml.jackson.core:jackson-databind:2.8.7" level="project" />
     <orderEntry type="library" name="org.tinylog:tinylog:1.2" level="project" />
     <orderEntry type="library" name="net.glxn.qrgen:javase:2.0" level="project" />
-    <orderEntry type="library" name="richtextfx-0.7-M3" level="project" />
     <orderEntry type="library" name="org.kordamp.ikonli:ikonli-materialdesign-pack:1.9.0" level="project" />
     <orderEntry type="library" name="org.kordamp.ikonli:ikonli-core:1.9.0" level="project" />
     <orderEntry type="library" name="org.kordamp.ikonli:ikonli-devicons-pack:1.9.0" level="project" />
@@ -20,5 +19,6 @@
     <orderEntry type="library" name="org.kordamp.ikonli:ikonli-fontawesome-pack:1.9.0" level="project" />
     <orderEntry type="library" name="org.kordamp.ikonli:ikonli-javafx:1.9.0" level="project" />
     <orderEntry type="library" name="com.mashape.unirest:unirest-java:1.4.9" level="project" />
+    <orderEntry type="library" name="org.nanohttpd:nanohttpd-webserver:2.3.1" level="project" />
   </component>
 </module>
