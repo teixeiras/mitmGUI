@@ -2,7 +2,6 @@ package Mitmgui.Managers;
 
 import Mitmgui.Models.FlowPackage;
 import Mitmgui.Models.Flows.FlowModel;
-import com.sun.tools.javac.comp.Flow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
@@ -16,6 +15,7 @@ import java.util.ListIterator;
 public class FlowsManager {
 
 
+    public static FlowsManager shared = new FlowsManager();
     private static String ADD = "FLOWS_ADD";
     private static String UPDATE = "FLOWS_UPDATE";
     private static String REMOVE = "FLOWS_REMOVE";
@@ -25,19 +25,15 @@ public class FlowsManager {
     private static String SET_SORT = "FLOWS_SET_SORT";
     private static String SET_HIGHLIGHT = "FLOWS_SET_HIGHLIGHT";
     private static String REQUEST_ACTION = "FLOWS_REQUEST_ACTION";
-
-
     private static String CMD_UPDATE = "update";
     private static String CMD_ADD = "add";
-
-    public static FlowsManager shared = new FlowsManager();
-
     private final ObservableList<FlowModel> data = FXCollections.observableArrayList();
     private TableView table;
 
     public ObservableList<FlowModel> getData() {
         return data;
     }
+
     public void addFlow(FlowModel flowPackage) {
         this.data.add(flowPackage);
     }
@@ -56,7 +52,7 @@ public class FlowsManager {
                         hasFound = true;
                     }
                 }
-            }catch (Exception e) {
+            } catch (Exception e) {
                 Logger.error(e);
             }
 

@@ -8,7 +8,6 @@ import java.net.HttpCookie;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -16,15 +15,22 @@ import java.util.List;
  */
 public class CookiesManager {
     public static CookiesManager shared = new CookiesManager();
-    private String token;
     static java.net.CookieManager msCookieManager = new java.net.CookieManager();
+    private String token;
 
+    public static String validCookie() {
+        if (shared.token == null) {
+            shared.refreshToken();
+        }
+        return shared.token;
+
+    }
 
     public String refreshToken() {
         try {
-            Logger.debug("Request cookies to "+"http://"+ PropertiesManager.shared.getURL());
+            Logger.debug("Request cookies to " + "http://" + PropertiesManager.shared.getURL());
 
-            URLConnection connection = new URL("http://"+ PropertiesManager.shared.getURL()).openConnection();
+            URLConnection connection = new URL("http://" + PropertiesManager.shared.getURL()).openConnection();
             List<String> cookiesHeader = connection.getHeaderFields().get("Set-Cookie");
             Logger.info("Cookie:" + cookiesHeader.get(0));
             token = cookiesHeader.get(0);
@@ -35,25 +41,19 @@ public class CookiesManager {
                     msCookieManager.getCookieStore().add(null, HttpCookie.parse(cookie).get(0));
                 }
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             AlertHelper.exception("Error connecting server", "Could not connect into the mitmweb server", e);
             Logger.error(e);
             token = "";
         }
         return token;
     }
-    public List<String>cookieList() {
-        List<String>cookieList = new ArrayList<>();
+
+    public List<String> cookieList() {
+        List<String> cookieList = new ArrayList<>();
         for (HttpCookie cookie : msCookieManager.getCookieStore().getCookies()) {
-            cookieList.add(cookie.getName()+"="+cookie.getValue());
+            cookieList.add(cookie.getName() + "=" + cookie.getValue());
         }
         return cookieList;
-    }
-    public static  String validCookie() {
-        if (shared.token == null) {
-            shared.refreshToken();
-        }
-        return shared.token;
-
     }
 }

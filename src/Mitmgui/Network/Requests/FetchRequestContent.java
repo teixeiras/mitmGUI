@@ -3,12 +3,10 @@ package Mitmgui.Network.Requests;
 import Mitmgui.Managers.PropertiesManager;
 import Mitmgui.Network.CookiesManager;
 import org.pmw.tinylog.Logger;
-import sun.rmi.runtime.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.CookieManager;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -18,12 +16,12 @@ import java.net.URL;
 public class FetchRequestContent {
 
     public byte[] getBinary(String id, String request) {
-        String url = "http://" + "http://"+ PropertiesManager.shared.getURL()+ "/flows/" +
+        String url = "http://" + "http://" + PropertiesManager.shared.getURL() + "/flows/" +
                 id + "/" + request + "/content";
         Logger.debug("Requesting" + url);
         HttpURLConnection connection;
         try {
-            connection = (HttpURLConnection)(new URL(url).openConnection());
+            connection = (HttpURLConnection) (new URL(url).openConnection());
 
             connection.setRequestMethod("GET");
             connection.setRequestProperty("Connection", "Keep-Alive");
@@ -36,15 +34,13 @@ public class FetchRequestContent {
                 byte[] byteChunk = new byte[4096]; // Or whatever size you want to read in at a time.
                 int n;
 
-                while ( (n = is.read(byteChunk)) > 0 ) {
+                while ((n = is.read(byteChunk)) > 0) {
                     baos.write(byteChunk, 0, n);
                 }
                 return baos.toByteArray();
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 Logger.error(e);
-            }
-            finally {
+            } finally {
                 if (is != null) {
                     is.close();
                 }

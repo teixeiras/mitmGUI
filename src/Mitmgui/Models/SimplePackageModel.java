@@ -10,6 +10,7 @@ public class SimplePackageModel {
 
     private String resource;
     private String cmd;
+
     public String getResource() {
         return resource;
     }

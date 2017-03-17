@@ -20,7 +20,7 @@ public class SettingsModel {
     private Boolean stickyauth;
     private Boolean stickycookie;
     private String stream;
-    private List<String> contentViews ;
+    private List<String> contentViews;
     private String listen_host;
     private String listen_port;
 

@@ -1,19 +1,10 @@
 package Mitmgui.Managers;
 
-import Mitmgui.Main;
 import Mitmgui.Models.EventPackage;
 import Mitmgui.Models.Events.EventsModel;
-import Mitmgui.Models.FlowPackage;
-import Mitmgui.Models.Flows.FlowModel;
-import Mitmgui.UI.FlowDetailsDataSource;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.TilePane;
-import javafx.util.Callback;
+import javafx.scene.control.ListView;
 import org.pmw.tinylog.Logger;
 
 import java.util.ListIterator;
@@ -22,17 +13,16 @@ import java.util.ListIterator;
  * Created by teixeiras on 12/03/2017.
  */
 public class EventsManager {
+    public static EventsManager shared = new EventsManager();
     private static String CMD_UPDATE = "update";
     private static String CMD_ADD = "add";
-    public static EventsManager shared = new EventsManager();
+    private final ObservableList<EventsModel> data = FXCollections.observableArrayList();
     ListView listView;
 
     public void setListView(ListView listView) {
         this.listView = listView;
     }
 
-
-    private final ObservableList<EventsModel> data = FXCollections.observableArrayList();
     public void addEvent(EventPackage eventPackage) {
         if (eventPackage.getCmd().equals(CMD_ADD)) {
             this.data.add(eventPackage.getData());
@@ -47,7 +37,7 @@ public class EventsManager {
                         hasFound = true;
                     }
                 }
-            }catch (Exception e) {
+            } catch (Exception e) {
                 Logger.error(e);
             }
 

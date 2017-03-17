@@ -1,135 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-
-<VBox alignment="CENTER" prefHeight="486.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Mitmgui.MainController">
-   <children>
-      <MenuBar VBox.vgrow="ALWAYS">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-                  <MenuItem mnemonicParsing="false" onAction="#installCertifcateDialog" text="Install certificates" />
-              <MenuItem mnemonicParsing="false" onAction="#exitAction" text="Exit" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <SplitPane dividerPositions="0.6" orientation="VERTICAL" prefHeight="337.0" prefWidth="665.0" VBox.vgrow="ALWAYS">
-        <items>
-            <VBox prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <ToolBar prefHeight="40.0" prefWidth="200.0">
-                     <items>
-                        <Button mnemonicParsing="false" onAction="#clearAction">
-                           <graphic>
-                              <org.kordamp.ikonli.javafx.FontIcon iconColor="black" iconLiteral="mdi-table-column-remove" iconSize="32" />
-                           </graphic>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#downloadAction">
-                           <graphic>
-                              <org.kordamp.ikonli.javafx.FontIcon iconColor="black" iconLiteral="mdi-download" iconSize="32" />
-                           </graphic>
-                        </Button>
-                         <Button mnemonicParsing="false" onAction="#playAllAction">
-                             <graphic>
-                                 <org.kordamp.ikonli.javafx.FontIcon iconColor="red" iconLiteral="mdi-play" iconSize="32" />
-                             </graphic>
-                         </Button>
-                         <Button mnemonicParsing="false" onAction="#stopAllAction">
-                             <graphic>
-                                 <org.kordamp.ikonli.javafx.FontIcon iconColor="green" iconLiteral="mdi-pause" iconSize="32" />
-                             </graphic>
-                         </Button>
-                     </items>
-                  </ToolBar>
-                  <SplitPane dividerPositions="0.4831013916500994" prefHeight="301.0" prefWidth="505.0">
-                     <items>
-                        <TableView id="flowTable" fx:id="flowTable" prefHeight="200.0" prefWidth="200.0" />
-                        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
-                          <tabs>
-                            <Tab text="Request">
-                                 <content>
-                                    <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
-                                       <content>
-                                          <VBox prefHeight="200.0" prefWidth="100.0" />
-                                       </content>
-                                    </ScrollPane>
-                                 </content>
-                            </Tab>
-                            <Tab text="Response">
-                                 <content>
-                                    <ScrollPane prefHeight="200.0" prefWidth="200.0">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                                      </content>
-                                    </ScrollPane>
-                                 </content>
-                            </Tab>
-                              <Tab text="Details">
-                                 <content>
-                                    <VBox prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <ListView fx:id="detailsListVew" prefHeight="200.0" prefWidth="200.0" />
-                                       </children>
-                                    </VBox>
-                                 </content>
-                              </Tab>
-                          </tabs>
-                        </TabPane>
-                     </items>
-                  </SplitPane>
-               </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <ToolBar prefHeight="40.0" prefWidth="200.0">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" prefHeight="486.0" prefWidth="665.0"
+      xmlns="http://javafx.com/javafx/8.0.111" fx:controller="Mitmgui.MainController">
+    <children>
+        <MenuBar VBox.vgrow="ALWAYS">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <Label text="Event Log" />
-                        <Pane HBox.hgrow="ALWAYS" />
-                        <CheckBox mnemonicParsing="false" onAction="#onDebugEventAction" text="Debug" />
-                        <CheckBox mnemonicParsing="false" onAction="#onInfoEventAction" text="Info" />
-                        <CheckBox mnemonicParsing="false" onAction="#onWebEventAction" text="Web" />
-                      <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#clearEventsActions">
-                          <graphic>
-                              <org.kordamp.ikonli.javafx.FontIcon iconColor="black" iconLiteral="mdi-table-column-remove" iconSize="32" />
-                          </graphic>
-                      </Button>
+                        <MenuItem mnemonicParsing="false" onAction="#installCertifcateDialog"
+                                  text="Install certificates"/>
+                        <MenuItem mnemonicParsing="false" onAction="#exitAction" text="Exit"/>
                     </items>
-                  </ToolBar>
-                  <ListView fx:id="eventsList" prefHeight="27.0" prefWidth="663.0" VBox.vgrow="ALWAYS" />
-               </children>
-            </VBox>
-        </items>
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-      </SplitPane>
-   </children>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Delete"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <SplitPane dividerPositions="0.6" orientation="VERTICAL" prefHeight="337.0" prefWidth="665.0"
+                   VBox.vgrow="ALWAYS">
+            <items>
+                <VBox prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <ToolBar prefHeight="40.0" prefWidth="200.0">
+                            <items>
+                                <Button mnemonicParsing="false" onAction="#clearAction">
+                                    <graphic>
+                                        <org.kordamp.ikonli.javafx.FontIcon iconColor="black"
+                                                                            iconLiteral="mdi-table-column-remove"
+                                                                            iconSize="32"/>
+                                    </graphic>
+                                </Button>
+                                <Button mnemonicParsing="false" onAction="#downloadAction">
+                                    <graphic>
+                                        <org.kordamp.ikonli.javafx.FontIcon iconColor="black" iconLiteral="mdi-download"
+                                                                            iconSize="32"/>
+                                    </graphic>
+                                </Button>
+                                <Button mnemonicParsing="false" onAction="#playAllAction">
+                                    <graphic>
+                                        <org.kordamp.ikonli.javafx.FontIcon iconColor="red" iconLiteral="mdi-play"
+                                                                            iconSize="32"/>
+                                    </graphic>
+                                </Button>
+                                <Button mnemonicParsing="false" onAction="#stopAllAction">
+                                    <graphic>
+                                        <org.kordamp.ikonli.javafx.FontIcon iconColor="green" iconLiteral="mdi-pause"
+                                                                            iconSize="32"/>
+                                    </graphic>
+                                </Button>
+                            </items>
+                        </ToolBar>
+                        <SplitPane dividerPositions="0.4831013916500994" prefHeight="301.0" prefWidth="505.0">
+                            <items>
+                                <TableView id="flowTable" fx:id="flowTable" prefHeight="200.0" prefWidth="200.0"/>
+                                <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+                                    <tabs>
+                                        <Tab text="Request">
+                                            <content>
+                                                <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0"
+                                                            prefWidth="200.0">
+                                                    <content>
+                                                        <VBox prefHeight="200.0" prefWidth="100.0"/>
+                                                    </content>
+                                                </ScrollPane>
+                                            </content>
+                                        </Tab>
+                                        <Tab text="Response">
+                                            <content>
+                                                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                                                    <content>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0"
+                                                                    prefWidth="200.0"/>
+                                                    </content>
+                                                </ScrollPane>
+                                            </content>
+                                        </Tab>
+                                        <Tab text="Details">
+                                            <content>
+                                                <VBox prefHeight="200.0" prefWidth="100.0">
+                                                    <children>
+                                                        <ListView fx:id="detailsListVew" prefHeight="200.0"
+                                                                  prefWidth="200.0"/>
+                                                    </children>
+                                                </VBox>
+                                            </content>
+                                        </Tab>
+                                    </tabs>
+                                </TabPane>
+                            </items>
+                        </SplitPane>
+                    </children>
+                </VBox>
+                <VBox prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <ToolBar prefHeight="40.0" prefWidth="200.0">
+                            <items>
+                                <Label text="Event Log"/>
+                                <Pane HBox.hgrow="ALWAYS"/>
+                                <CheckBox mnemonicParsing="false" onAction="#onDebugEventAction" text="Debug"/>
+                                <CheckBox mnemonicParsing="false" onAction="#onInfoEventAction" text="Info"/>
+                                <CheckBox mnemonicParsing="false" onAction="#onWebEventAction" text="Web"/>
+                                <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#clearEventsActions">
+                                    <graphic>
+                                        <org.kordamp.ikonli.javafx.FontIcon iconColor="black"
+                                                                            iconLiteral="mdi-table-column-remove"
+                                                                            iconSize="32"/>
+                                    </graphic>
+                                </Button>
+                            </items>
+                        </ToolBar>
+                        <ListView fx:id="eventsList" prefHeight="27.0" prefWidth="663.0" VBox.vgrow="ALWAYS"/>
+                    </children>
+                </VBox>
+            </items>
+            <VBox.margin>
+                <Insets/>
+            </VBox.margin>
+        </SplitPane>
+    </children>
 </VBox>

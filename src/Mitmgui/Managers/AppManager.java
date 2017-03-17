@@ -3,18 +3,10 @@ package Mitmgui.Managers;
 import javafx.scene.image.Image;
 import net.glxn.qrgen.core.image.ImageType;
 import net.glxn.qrgen.javase.QRCode;
-import org.pmw.tinylog.Logger;
-
-import javax.imageio.ImageIO;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
 /**
  * Created by teixeiras on 14/03/2017.
@@ -30,7 +22,7 @@ public class AppManager {
         return new javafx.scene.image.Image(in);
     }
 
-    public static File homeDirectory () {
+    public static File homeDirectory() {
         if (file != null) {
             return file;
         }

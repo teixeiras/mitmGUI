@@ -4,31 +4,6 @@ package Mitmgui.Models.Flows;
  * Created by teixeiras on 12/03/2017.
  */
 public class ConnectionModel {
-    public class Address
-    {
-        private String[] address;
-        private Boolean use_ipv6;
-
-        public String[] getAddress() {
-            return address;
-        }
-
-        public void setAddress(String[] address) {
-            this.address = address;
-        }
-
-        public Boolean getUse_ipv6() {
-            return use_ipv6;
-        }
-
-        public void setUse_ipv6(Boolean use_ipv6) {
-            this.use_ipv6 = use_ipv6;
-        }
-
-        public Address()
-        {
-        }
-    }
     private Address address;
     private Address ip_address;
     private Address source_address;
@@ -42,9 +17,7 @@ public class ConnectionModel {
     private String via;
     private String clientcert;
     private String cipher_name;
-
     private String tls_version;
-
 
     public Address getAddress() {
         return address;
@@ -156,5 +129,29 @@ public class ConnectionModel {
 
     public void setTls_version(String tls_version) {
         this.tls_version = tls_version;
+    }
+
+    public class Address {
+        private String[] address;
+        private Boolean use_ipv6;
+
+        public Address() {
+        }
+
+        public String[] getAddress() {
+            return address;
+        }
+
+        public void setAddress(String[] address) {
+            this.address = address;
+        }
+
+        public Boolean getUse_ipv6() {
+            return use_ipv6;
+        }
+
+        public void setUse_ipv6(Boolean use_ipv6) {
+            this.use_ipv6 = use_ipv6;
+        }
     }
 }

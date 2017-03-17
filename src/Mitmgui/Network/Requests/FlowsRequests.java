@@ -11,7 +11,7 @@ import java.io.IOException;
  */
 public class FlowsRequests extends JSONReader<FlowModel[]> {
     public FlowModel[] getFlows() throws IOException {
-        return readJsonFromUrl("http://"+ PropertiesManager.shared.getURL()+"/flows", FlowModel[].class);
-}
+        return readJsonFromUrl("http://" + PropertiesManager.shared.getURL() + "/flows", FlowModel[].class);
+    }
 
 }

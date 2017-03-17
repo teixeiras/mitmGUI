@@ -11,6 +11,6 @@ import java.io.IOException;
  */
 public class EventsRequests extends JSONReader<EventsModel[]> {
     public EventsModel[] getEvents() throws IOException {
-        return readJsonFromUrl("http://"+ PropertiesManager.shared.getURL()+"/events", EventsModel[].class);
+        return readJsonFromUrl("http://" + PropertiesManager.shared.getURL() + "/events", EventsModel[].class);
     }
 }

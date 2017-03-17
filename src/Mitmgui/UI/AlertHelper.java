@@ -19,6 +19,7 @@ public class AlertHelper {
         alert.setHeaderText("MITMGW");
         alert.setContentText("I have a great message for you!");
     }
+
     static public void error(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

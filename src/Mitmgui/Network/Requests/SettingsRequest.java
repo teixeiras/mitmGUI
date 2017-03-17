@@ -11,6 +11,6 @@ import java.io.IOException;
  */
 public class SettingsRequest extends JSONReader<SettingsModel> {
     public SettingsModel getSettings() throws IOException {
-        return readJsonFromUrl("http://"+PropertiesManager.shared.getURL()+"/settings", SettingsModel.class);
+        return readJsonFromUrl("http://" + PropertiesManager.shared.getURL() + "/settings", SettingsModel.class);
     }
 }

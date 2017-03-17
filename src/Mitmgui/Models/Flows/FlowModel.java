@@ -3,52 +3,26 @@ package Mitmgui.Models.Flows;
 import Mitmgui.Models.OperationModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * Created by teixeiras on 12/03/2017.
  */
 public class FlowModel extends OperationModel {
 
-    public class ErrorModel {
-        private String msg;
-        private String timestamp;
-
-        public String getMsg() {
-            return msg;
-        }
-
-        public void setMsg(String msg) {
-            this.msg = msg;
-        }
-
-        public String getTimestamp() {
-            return timestamp;
-        }
-
-        public void setTimestamp(String timestamp) {
-            this.timestamp = timestamp;
-        }
-    }
     private Boolean intercepted;
-
     private ErrorModel error;
-
     private String type;
-
     private Boolean modified;
-
     private Boolean marked;
-
     private ConnectionModel client_conn;
-
     private ConnectionModel server_conn;
-
     private RequestModel request;
-
     private ResponseModel response;
-
+    private StringProperty path = new SimpleStringProperty(this, "path");
+    private StringProperty method = new SimpleStringProperty(this, "method");
+    private StringProperty status = new SimpleStringProperty(this, "status");
+    private StringProperty size = new SimpleStringProperty(this, "size");
+    private StringProperty time = new SimpleStringProperty(this, "time");
 
     public Boolean getIntercepted() {
         return intercepted;
@@ -109,6 +83,7 @@ public class FlowModel extends OperationModel {
     public ResponseModel getResponse() {
         return response;
     }
+    ;
 
     public void setResponse(ResponseModel response) {
         this.response = response;
@@ -122,30 +97,25 @@ public class FlowModel extends OperationModel {
         this.error = error;
     }
 
-
-    private StringProperty path= new SimpleStringProperty(this, "path");;
-    public final StringProperty pathProperty(){
+    public final StringProperty pathProperty() {
 
         path.set(request.getPath());
         return path;
     }
 
-    private StringProperty method = new SimpleStringProperty(this, "method");
-    public final StringProperty methodProperty(){
+    public final StringProperty methodProperty() {
 
         method.set(this.request.getMethod());
         return method;
     }
 
-    private StringProperty status= new SimpleStringProperty(this, "status");
-    public final StringProperty statusProperty(){
+    public final StringProperty statusProperty() {
 
-        status.set(this.getIntercepted()+"");
+        status.set(this.getIntercepted() + "");
         return status;
     }
 
-    private StringProperty size = new SimpleStringProperty(this, "size");
-    public final StringProperty sizeProperty(){
+    public final StringProperty sizeProperty() {
 
         if (response != null) {
             size.set(response.getContentLength());
@@ -153,12 +123,32 @@ public class FlowModel extends OperationModel {
         return size;
     }
 
-    private StringProperty time= new SimpleStringProperty(this, "time");
-    public final StringProperty timeProperty(){
+    public final StringProperty timeProperty() {
         if (response != null) {
             time.set(response.getTimestamp_end() - response.getTimestamp_start() + "");
         }
         return time;
+    }
+
+    public class ErrorModel {
+        private String msg;
+        private String timestamp;
+
+        public String getMsg() {
+            return msg;
+        }
+
+        public void setMsg(String msg) {
+            this.msg = msg;
+        }
+
+        public String getTimestamp() {
+            return timestamp;
+        }
+
+        public void setTimestamp(String timestamp) {
+            this.timestamp = timestamp;
+        }
     }
 
 

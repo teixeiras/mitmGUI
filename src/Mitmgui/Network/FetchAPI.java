@@ -5,13 +5,12 @@ import Mitmgui.Managers.PropertiesManager;
 import Mitmgui.Models.Flows.FlowModel;
 import org.pmw.tinylog.Logger;
 
-import java.awt.Desktop;
+import java.awt.*;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.List;
 
 /**
  * Created by teixeiras on 12/03/2017.
@@ -32,13 +31,14 @@ public class FetchAPI {
 
         return newUri.toString();
     }
+
     private HttpURLConnection connection(String partialUrl, String type) throws Exception {
         try {
-            String url = "http://"+ PropertiesManager.shared.getURL()+partialUrl;
+            String url = "http://" + PropertiesManager.shared.getURL() + partialUrl;
             for (String cookie : CookiesManager.shared.cookieList()) {
                 url = appendUri(url, cookie);
             }
-            HttpURLConnection connection = (HttpURLConnection)(new URL(url).openConnection());
+            HttpURLConnection connection = (HttpURLConnection) (new URL(url).openConnection());
 
             Logger.info(connection.getURL().toString());
             connection.setRequestMethod(type);
@@ -52,8 +52,7 @@ public class FetchAPI {
         } catch (IOException e) {
             Logger.error(e);
             throw e;
-        }
-        catch (URISyntaxException e) {
+        } catch (URISyntaxException e) {
             Logger.error(e);
             throw e;
         }
@@ -69,85 +68,86 @@ public class FetchAPI {
 
     }
 
-    public void PUT(String url,  byte[] data) throws Exception {
+    public void PUT(String url, byte[] data) throws Exception {
         HttpURLConnection connection = this.connection(url, "PUT");
 
     }
 
 
     public void resume(FlowModel flow) throws Exception {
-        POST("/flows/"+flow.getId()+"/resume");
+        POST("/flows/" + flow.getId() + "/resume");
     }
 
     public void resumeAll() throws Exception {
         POST("/flows/resume");
     }
 
-    public void  kill(FlowModel flow) throws Exception {
-        POST("/flows/"+flow.getId()+"/kill");
+    public void kill(FlowModel flow) throws Exception {
+        POST("/flows/" + flow.getId() + "/kill");
     }
 
-    public void  killAll() throws Exception {
+    public void killAll() throws Exception {
         POST("/flows/kill");
     }
 
 
-    public void  remove(FlowModel flow) throws Exception {
-        POST("/flows/"+flow.getId());
+    public void remove(FlowModel flow) throws Exception {
+        POST("/flows/" + flow.getId());
     }
 
     public void duplicate(FlowModel flow) throws Exception {
-        POST("/flows/"+flow.getId()+"/duplicate");
+        POST("/flows/" + flow.getId() + "/duplicate");
     }
 
     public void replay(FlowModel flow) throws Exception {
-        POST("/flows/"+flow.getId()+"/replay");
+        POST("/flows/" + flow.getId() + "/replay");
     }
 
-    public void  revert(FlowModel flow) throws Exception {
-        POST("/flows/"+flow.getId()+"/revert");
+    public void revert(FlowModel flow) throws Exception {
+        POST("/flows/" + flow.getId() + "/revert");
     }
 
-    public void  update(FlowModel flow,  byte[] data) throws Exception {
-        PUT("/flows/"+flow.getId(), data);
+    public void update(FlowModel flow, byte[] data) throws Exception {
+        PUT("/flows/" + flow.getId(), data);
     }
 
     public void uploadFile(URL url, byte[] postData) throws Exception {
-        try{
-            int    postDataLength = postData.length;
+        try {
+            int postDataLength = postData.length;
 
-            HttpURLConnection conn= (HttpURLConnection) url.openConnection();
-            conn.setDoOutput( true );
-            conn.setInstanceFollowRedirects( false );
-            conn.setRequestMethod( "POST" );
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            conn.setInstanceFollowRedirects(false);
+            conn.setRequestMethod("POST");
             conn.setRequestProperty("Cookie", CookiesManager.validCookie());
 
-            conn.setRequestProperty( "Content-Type", "application/x-www-form-urlencoded");
-            conn.setRequestProperty( "charset", "utf-8");
-            conn.setRequestProperty( "Content-Length", Integer.toString( postDataLength ));
-            conn.setUseCaches( false );
-            try( DataOutputStream wr = new DataOutputStream( conn.getOutputStream())) {
-                wr.write( postData );
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            conn.setRequestProperty("charset", "utf-8");
+            conn.setRequestProperty("Content-Length", Integer.toString(postDataLength));
+            conn.setUseCaches(false);
+            try (DataOutputStream wr = new DataOutputStream(conn.getOutputStream())) {
+                wr.write(postData);
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             Logger.error(e);
             throw e;
         }
     }
-    public void  uploadContent(FlowModel flow, byte[] postData, String type) throws Exception{
-        URL url = new URL("http://"+ PropertiesManager.shared.getURL()+
-                "/flows/"+flow.getId()+"/"+type+"/content");
+
+    public void uploadContent(FlowModel flow, byte[] postData, String type) throws Exception {
+        URL url = new URL("http://" + PropertiesManager.shared.getURL() +
+                "/flows/" + flow.getId() + "/" + type + "/content");
         uploadFile(url, postData);
-   }
+    }
 
 
-    public void  clear() throws Exception {
+    public void clear() throws Exception {
         POST("/clear");
     }
 
-    public void  downloadDump() throws Exception {
+    public void downloadDump() throws Exception {
 
-        try{
+        try {
             HttpURLConnection connection = this.connection("/flows/dump", "POST");
             File file = new File(AppManager.homeDirectory(), "flow.dump");
             FileOutputStream fop = new FileOutputStream(file);
@@ -161,7 +161,7 @@ public class FetchAPI {
             is = connection.getInputStream();
             byte[] byteChunk = new byte[4096]; // Or whatever size you want to read in at a time.
             int n;
-            while ( (n = is.read(byteChunk)) > 0 ) {
+            while ((n = is.read(byteChunk)) > 0) {
                 baos.write(byteChunk, 0, n);
             }
 
@@ -174,14 +174,14 @@ public class FetchAPI {
             }
 
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             Logger.error(e);
             throw e;
         }
 
     }
 
-    public void  uploadDump(File file) throws Exception {
+    public void uploadDump(File file) throws Exception {
         URL url = new URL("http://" + PropertiesManager.shared.getURL() + "/flows/dump");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         InputStream is = new FileInputStream(file);

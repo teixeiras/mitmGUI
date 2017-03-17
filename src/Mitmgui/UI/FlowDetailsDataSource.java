@@ -5,14 +5,13 @@ import Mitmgui.Models.Flows.FlowModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.TilePane;
 import javafx.util.Callback;
 
 
@@ -24,16 +23,6 @@ public class FlowDetailsDataSource {
     FlowModel model;
     ListView listView;
 
-    public class FlowDetailsRow {
-    }
-    public class FlowDetailsTitle extends FlowDetailsRow{
-
-    }
-    public class FlowDetailsContent extends FlowDetailsRow{
-
-    }
-
-
     public FlowDetailsDataSource(FlowModel model, ListView listView) {
         this.model = model;
         this.listView = listView;
@@ -42,15 +31,26 @@ public class FlowDetailsDataSource {
         listView.setItems(information);
 
         listView.setCellFactory(new Callback<ListView<FlowDetailsRow>, ListCell<FlowDetailsRow>>() {
-                                @Override
-                                public ListCell<FlowDetailsRow> call(ListView<FlowDetailsRow> list) {
-                                    return new FlowDetailsCell();
+                                    @Override
+                                    public ListCell<FlowDetailsRow> call(ListView<FlowDetailsRow> list) {
+                                        return new FlowDetailsCell();
+                                    }
                                 }
-                            }
 
 
         );
 
+
+    }
+
+    public class FlowDetailsRow {
+    }
+
+    public class FlowDetailsTitle extends FlowDetailsRow {
+
+    }
+
+    public class FlowDetailsContent extends FlowDetailsRow {
 
     }
 
@@ -59,6 +59,7 @@ public class FlowDetailsDataSource {
             setMaxWidth(Control.USE_PREF_SIZE);
             prefWidthProperty().bind(listView.widthProperty().subtract(2));
         }
+
         @Override
         public void updateItem(FlowDetailsRow item, boolean empty) {
             super.updateItem(item, empty);
@@ -71,7 +72,7 @@ public class FlowDetailsDataSource {
                     Parent root = loader.load();
 
                     HBox content = (HBox) loader.getNamespace().get("cellContent");
-                    Label title = (Label)content.lookup("#title");
+                    Label title = (Label) content.lookup("#title");
                     title.setText("ROME WAS BOUGHT TODAT");
                     content.setMaxWidth(Control.USE_PREF_SIZE);
                     content.prefWidthProperty().bind(listView.widthProperty().subtract(2));
@@ -81,10 +82,10 @@ public class FlowDetailsDataSource {
                     Parent root = loader.load();
                     TilePane content = (TilePane) loader.getNamespace().get("cellContent");
 
-                    Label caption = (Label)content.lookup("#caption");
+                    Label caption = (Label) content.lookup("#caption");
                     caption.setText("Janota");
 
-                    Label value = (Label)content.lookup("#value");
+                    Label value = (Label) content.lookup("#value");
                     value.setText("oia");
 
                     caption.prefWidthProperty().bind(content.widthProperty().divide(2).subtract(2));
@@ -94,14 +95,13 @@ public class FlowDetailsDataSource {
 
                     setGraphic(content);
                 }
-            }catch(Exception e) {
+            } catch (Exception e) {
 
             }
 
 
         }
     }
-
 
 
 }

@@ -1,7 +1,6 @@
 package Mitmgui;
 
 import Mitmgui.Managers.AppManager;
-import Mitmgui.Managers.EventsManager;
 import Mitmgui.Managers.FlowsManager;
 import Mitmgui.Managers.PreferencesManager;
 import Mitmgui.Models.Events.EventsModel;
@@ -15,11 +14,9 @@ import Mitmgui.Network.UpdatesSocketHandler;
 import Mitmgui.UI.AlertHelper;
 import Mitmgui.UI.EventsDataSource;
 import Mitmgui.UI.FlowDetailsDataSource;
-import com.sun.tools.javac.comp.Flow;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -30,7 +27,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
@@ -41,23 +37,21 @@ import org.pmw.tinylog.Logger;
 import java.io.IOException;
 
 
-public class MainController{
+public class MainController {
     Stage stage;
     UpdatesSocketHandler socketHandler;
     FlowDetailsDataSource datasource;
     EventsDataSource eventsDataSource;
+    @FXML
+    ListView<FlowDetailsDataSource.FlowDetailsRow> detailsListVew;
+    @FXML
+    private TableView flowTable;
+    @FXML
+    private ListView<EventsModel> eventsList;
+
     public MainController() {
 
     }
-
-    @FXML
-    ListView<FlowDetailsDataSource.FlowDetailsRow> detailsListVew;
-
-    @FXML
-    private TableView flowTable;
-
-    @FXML
-    private ListView<EventsModel> eventsList;
 
     @FXML
     private void exitAction(ActionEvent event) {
@@ -72,6 +66,7 @@ public class MainController{
             AlertHelper.exception("Failed trying to resume", "The request resume has failed, try it again, later", e);
         }
     }
+
     @FXML
     private void onDebugEventAction(ActionEvent event) {
         try {
@@ -86,6 +81,7 @@ public class MainController{
             AlertHelper.exception("Failed to add filter ", "There was a technical fail on application", e);
         }
     }
+
     @FXML
     private void onInfoEventAction(ActionEvent event) {
         try {
@@ -100,6 +96,7 @@ public class MainController{
             AlertHelper.exception("Failed to add filter ", "There was a technical fail on application", e);
         }
     }
+
     @FXML
     private void onWebEventAction(ActionEvent event) {
         try {
@@ -114,6 +111,7 @@ public class MainController{
             AlertHelper.exception("Failed to add filter ", "There was a technical fail on application", e);
         }
     }
+
     @FXML
     private void downloadAction(ActionEvent event) {
         try {
@@ -176,7 +174,7 @@ public class MainController{
     }
 
     @FXML
-    protected void initialize(){
+    protected void initialize() {
         populateFlowTable();
         // Implementing the Initializable interface means that this method
         // will be called when the controller instance is created
@@ -190,8 +188,8 @@ public class MainController{
         }
 
         try {
-            FlowsRequests sRequest = new FlowsRequests ();
-            FlowModel[] flows= sRequest.getFlows();
+            FlowsRequests sRequest = new FlowsRequests();
+            FlowModel[] flows = sRequest.getFlows();
             for (FlowModel model : flows) {
                 FlowsManager.shared.addFlow(model);
             }
@@ -201,16 +199,17 @@ public class MainController{
         }
 
         try {
-            EventsRequests sRequest = new EventsRequests ();
-            EventsModel[] events= sRequest.getEvents();
+            EventsRequests sRequest = new EventsRequests();
+            EventsModel[] events = sRequest.getEvents();
             Logger.debug(events);
         } catch (IOException e) {
             Logger.error(e);
         }
-        datasource = new FlowDetailsDataSource(new FlowModel(),detailsListVew);
+        datasource = new FlowDetailsDataSource(new FlowModel(), detailsListVew);
         eventsDataSource = new EventsDataSource(eventsList);
-    };
+    }
 
+    ;
 
 
     public void setStageAndSetupListeners(Stage stage) {
@@ -224,31 +223,31 @@ public class MainController{
         });
     }
 
-    public void populateFlowTable(){
+    public void populateFlowTable() {
 
         TableColumn pathCol = new TableColumn("Path");
-        pathCol .setCellValueFactory(
-                new PropertyValueFactory<FlowModel,String>("path")
+        pathCol.setCellValueFactory(
+                new PropertyValueFactory<FlowModel, String>("path")
         );
 
         TableColumn methodCol = new TableColumn("Method");
-        methodCol .setCellValueFactory(
-                new PropertyValueFactory<FlowModel,String>("method")
+        methodCol.setCellValueFactory(
+                new PropertyValueFactory<FlowModel, String>("method")
         );
 
         TableColumn statusCol = new TableColumn("Status");
-        statusCol .setCellValueFactory(
-                new PropertyValueFactory<FlowModel,String>("status")
+        statusCol.setCellValueFactory(
+                new PropertyValueFactory<FlowModel, String>("status")
         );
 
         TableColumn sizeCol = new TableColumn("Size");
-        sizeCol .setCellValueFactory(
-                new PropertyValueFactory<FlowModel,String>("size")
+        sizeCol.setCellValueFactory(
+                new PropertyValueFactory<FlowModel, String>("size")
         );
 
         TableColumn timeCol = new TableColumn("Time");
-        timeCol .setCellValueFactory(
-                new PropertyValueFactory<FlowModel,String>("time")
+        timeCol.setCellValueFactory(
+                new PropertyValueFactory<FlowModel, String>("time")
         );
 
         flowTable.getColumns().addAll(pathCol, methodCol, statusCol, sizeCol, timeCol);
@@ -274,7 +273,7 @@ public class MainController{
                         row.contextMenuProperty().bind(
                                 Bindings.when(Bindings.isNotNull(row.itemProperty()))
                                         .then(rowMenu)
-                                        .otherwise((ContextMenu)null));
+                                        .otherwise((ContextMenu) null));
                         return row;
                     }
                 });
@@ -283,8 +282,7 @@ public class MainController{
             @Override
             public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
                 //Check whether item is selected and set value of selected item to Label
-                if(flowTable.getSelectionModel().getSelectedItem() != null)
-                {
+                if (flowTable.getSelectionModel().getSelectedItem() != null) {
                     FlowModel model = (FlowModel) flowTable.getSelectionModel().getSelectedItem();
                     System.out.println("Selected Value" + model);
                 }

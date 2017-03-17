@@ -6,10 +6,9 @@ import java.util.prefs.Preferences;
  * Created by fteixeira on 13/03/2017.
  */
 public class PreferencesManager {
+    public static PreferencesManager shared = new PreferencesManager();
     static String MAIN_WIDTH_PROPERTY = "MAIN_WIDTH_PROPERTY";
     static String MAIN_HEIGHT_PROPERTY = "MAIN_HEIGHT_PROPERTY";
-    public static PreferencesManager shared = new PreferencesManager();
-
     Preferences prefs = Preferences.userNodeForPackage(this.getClass());
 
 
