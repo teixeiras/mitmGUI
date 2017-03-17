@@ -1,4 +1,5 @@
 package Mitmgui.Network;
+import Mitmgui.Managers.EventsManager;
 import Mitmgui.Managers.FlowsManager;
 import Mitmgui.Managers.PropertiesManager;
 import Mitmgui.Models.EventPackage;
@@ -48,7 +49,7 @@ public class UpdatesSocketHandler {
 
                         } else if (simplePackageModel.getResource().equals(EVENTS)) {
                             EventPackage eventPackage= (EventPackage)mapper.readValue(message, EventPackage.class);
-
+                            EventsManager.shared.addEvent(eventPackage);
                         } else {
                             Logger.error("This package was not parsed: "+message);
                         }

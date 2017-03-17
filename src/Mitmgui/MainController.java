@@ -1,6 +1,7 @@
 package Mitmgui;
 
 import Mitmgui.Managers.AppManager;
+import Mitmgui.Managers.EventsManager;
 import Mitmgui.Managers.FlowsManager;
 import Mitmgui.Managers.PreferencesManager;
 import Mitmgui.Models.Events.EventsModel;
@@ -14,6 +15,7 @@ import Mitmgui.Network.UpdatesSocketHandler;
 import Mitmgui.UI.AlertHelper;
 import Mitmgui.UI.FlowDetailsDataSource;
 import com.sun.tools.javac.comp.Flow;
+import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -32,6 +34,7 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import org.pmw.tinylog.Logger;
 
 import java.io.IOException;
@@ -53,6 +56,9 @@ public class MainController{
     private TableView flowTable;
 
     @FXML
+    private ListView<EventsModel> eventsList;
+
+    @FXML
     private void exitAction(ActionEvent event) {
         System.exit(0);
     }
@@ -61,7 +67,7 @@ public class MainController{
     private void playAllAction(ActionEvent event) {
         try {
             new FetchAPI().resumeAll();
-        } catch (IOException e) {
+        } catch (Exception e) {
             AlertHelper.exception("Failed trying to resume", "The request resume has failed, try it again, later", e);
         }
     }
@@ -70,7 +76,7 @@ public class MainController{
     private void downloadAction(ActionEvent event) {
         try {
             new FetchAPI().downloadDump();
-        } catch (IOException e) {
+        } catch (Exception e) {
             AlertHelper.exception("Failed trying to download", "The request dump has failed, try it again, later", e);
         }
     }
@@ -80,7 +86,7 @@ public class MainController{
         try {
             new FetchAPI().clear();
             FlowsManager.shared.clear();
-        } catch (IOException e) {
+        } catch (Exception e) {
             AlertHelper.exception("Failed trying to clear Action", "The request clear has failed, try it again, later", e);
         }
     }
@@ -89,7 +95,7 @@ public class MainController{
     private void stopAllAction(ActionEvent event) {
         try {
             new FetchAPI().killAll();
-        } catch (IOException e) {
+        } catch (Exception e) {
             AlertHelper.exception("Failed trying to stop Action", "The request stop has failed, try it again, later", e);
         }
     }
@@ -151,7 +157,7 @@ public class MainController{
             Logger.error(e);
         }
         datasource = new FlowDetailsDataSource(new FlowModel(),detailsListVew);
-
+        EventsManager.shared.setListView(eventsList);
     };
 
 
@@ -196,6 +202,31 @@ public class MainController{
 
         flowTable.getColumns().addAll(pathCol, methodCol, statusCol, sizeCol, timeCol);
 
+        flowTable.setRowFactory(
+                new Callback<TableView<FlowModel>, TableRow<FlowModel>>() {
+                    @Override
+                    public TableRow<FlowModel> call(TableView<FlowModel> tableView) {
+                        final TableRow<FlowModel> row = new TableRow<>();
+                        final ContextMenu rowMenu = new ContextMenu();
+                        MenuItem editItem = new MenuItem("Edit");
+                        //editItem.setOnAction(...);
+                        MenuItem removeItem = new MenuItem("Delete");
+                        removeItem.setOnAction(new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent event) {
+                                flowTable.getItems().remove(row.getItem());
+                            }
+                        });
+                        rowMenu.getItems().addAll(editItem, removeItem);
+
+                        // only display context menu for non-null items:
+                        row.contextMenuProperty().bind(
+                                Bindings.when(Bindings.isNotNull(row.itemProperty()))
+                                        .then(rowMenu)
+                                        .otherwise((ContextMenu)null));
+                        return row;
+                    }
+                });
         FlowsManager.shared.setTable(flowTable);
         flowTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override

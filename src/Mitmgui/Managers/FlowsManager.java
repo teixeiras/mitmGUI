@@ -6,6 +6,7 @@ import com.sun.tools.javac.comp.Flow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
+import org.pmw.tinylog.Logger;
 
 import java.util.ListIterator;
 
@@ -47,13 +48,18 @@ public class FlowsManager {
         } else {
             int index = 0;
             boolean hasFound = false;
-            for (ListIterator<FlowModel> it = data.listIterator(); it.hasNext(); index++) {
-                FlowModel model = it.next();
-                if (model.getId().equals(flowPackage.getData().getId())) {
-                    data.set(index, flowPackage.getData());
-                    hasFound = true;
+            try {
+                for (ListIterator<FlowModel> it = data.listIterator(); it.hasNext(); index++) {
+                    FlowModel model = it.next();
+                    if (model.getId().equals(flowPackage.getData().getId())) {
+                        data.set(index, flowPackage.getData());
+                        hasFound = true;
+                    }
                 }
+            }catch (Exception e) {
+                Logger.error(e);
             }
+
             if (!hasFound) {
                 this.data.add(flowPackage.getData());
             }

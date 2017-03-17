@@ -5,18 +5,19 @@ import Mitmgui.Managers.PropertiesManager;
 import Mitmgui.Models.Flows.FlowModel;
 import org.pmw.tinylog.Logger;
 
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.List;
 
 /**
  * Created by teixeiras on 12/03/2017.
  */
 public class FetchAPI {
-    public static URI appendUri(String uri, String appendQuery) throws URISyntaxException {
+    public static String appendUri(String uri, String appendQuery) throws URISyntaxException {
         URI oldUri = new URI(uri);
 
         String newQuery = oldUri.getQuery();
@@ -29,16 +30,15 @@ public class FetchAPI {
         URI newUri = new URI(oldUri.getScheme(), oldUri.getAuthority(),
                 oldUri.getPath(), newQuery, oldUri.getFragment());
 
-        return newUri;
+        return newUri.toString();
     }
-    private HttpURLConnection connection(String partialUrl, String type) throws IOException {
+    private HttpURLConnection connection(String partialUrl, String type) throws Exception {
         try {
             String url = "http://"+ PropertiesManager.shared.getURL()+partialUrl;
-            URI uri = null;
-            if (type.equals("GET")) {
-                URI uri = appendUri(url, )
+            for (String cookie : CookiesManager.shared.cookieList()) {
+                url = appendUri(url, cookie);
             }
-            HttpURLConnection connection = (HttpURLConnection)(new URL(uri).openConnection());
+            HttpURLConnection connection = (HttpURLConnection)(new URL(url).openConnection());
 
             Logger.info(connection.getURL().toString());
             connection.setRequestMethod(type);
@@ -53,62 +53,66 @@ public class FetchAPI {
             Logger.error(e);
             throw e;
         }
+        catch (URISyntaxException e) {
+            Logger.error(e);
+            throw e;
+        }
     }
 
-    public void GET(String url) throws IOException {
+    public void GET(String url) throws Exception {
         HttpURLConnection connection = this.connection(url, "GET");
 
     }
 
-    public void POST(String url) throws IOException {
+    public void POST(String url) throws Exception {
         HttpURLConnection connection = this.connection(url, "POST");
 
     }
 
-    public void PUT(String url,  byte[] data) throws IOException {
+    public void PUT(String url,  byte[] data) throws Exception {
         HttpURLConnection connection = this.connection(url, "PUT");
 
     }
 
 
-    public void resume(FlowModel flow) throws IOException {
+    public void resume(FlowModel flow) throws Exception {
         POST("/flows/"+flow.getId()+"/resume");
     }
 
-    public void resumeAll() throws IOException {
+    public void resumeAll() throws Exception {
         POST("/flows/resume");
     }
 
-    public void  kill(FlowModel flow) throws IOException {
+    public void  kill(FlowModel flow) throws Exception {
         POST("/flows/"+flow.getId()+"/kill");
     }
 
-    public void  killAll() throws IOException {
+    public void  killAll() throws Exception {
         POST("/flows/kill");
     }
 
 
-    public void  remove(FlowModel flow) throws IOException {
+    public void  remove(FlowModel flow) throws Exception {
         POST("/flows/"+flow.getId());
     }
 
-    public void duplicate(FlowModel flow) throws IOException {
+    public void duplicate(FlowModel flow) throws Exception {
         POST("/flows/"+flow.getId()+"/duplicate");
     }
 
-    public void replay(FlowModel flow) throws IOException {
+    public void replay(FlowModel flow) throws Exception {
         POST("/flows/"+flow.getId()+"/replay");
     }
 
-    public void  revert(FlowModel flow) throws IOException {
+    public void  revert(FlowModel flow) throws Exception {
         POST("/flows/"+flow.getId()+"/revert");
     }
 
-    public void  update(FlowModel flow,  byte[] data) throws IOException {
+    public void  update(FlowModel flow,  byte[] data) throws Exception {
         PUT("/flows/"+flow.getId(), data);
     }
 
-    public void uploadFile(URL url, byte[] postData) throws IOException {
+    public void uploadFile(URL url, byte[] postData) throws Exception {
         try{
             int    postDataLength = postData.length;
 
@@ -137,11 +141,11 @@ public class FetchAPI {
    }
 
 
-    public void  clear() throws IOException {
+    public void  clear() throws Exception {
         POST("/clear");
     }
 
-    public void  downloadDump() throws IOException {
+    public void  downloadDump() throws Exception {
 
         try{
             HttpURLConnection connection = this.connection("/flows/dump", "POST");

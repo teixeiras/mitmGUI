@@ -110,7 +110,7 @@
                       <Button mnemonicParsing="false" text="Button" />
                     </items>
                   </ToolBar>
-                  <ListView prefHeight="27.0" prefWidth="663.0" />
+                  <ListView fx:id="eventsList" prefHeight="27.0" prefWidth="663.0" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
         </items>

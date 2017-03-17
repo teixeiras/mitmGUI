@@ -5,21 +5,20 @@ import Mitmgui.Models.Flows.FlowModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.TilePane;
 import javafx.util.Callback;
 
 
 /**
  * Created by teixeiras on 15/03/2017.
  */
-public class FlowDetailsDataSource {
+public class EventsDataSource {
     ObservableList<FlowDetailsRow> information = FXCollections.observableArrayList();
     FlowModel model;
     ListView listView;
@@ -34,7 +33,7 @@ public class FlowDetailsDataSource {
     }
 
 
-    public FlowDetailsDataSource(FlowModel model, ListView listView) {
+    public EventsDataSource(FlowModel model, ListView listView) {
         this.model = model;
         this.listView = listView;
         information.addAll(new FlowDetailsTitle(), new FlowDetailsContent());
@@ -47,10 +46,7 @@ public class FlowDetailsDataSource {
                                     return new FlowDetailsCell();
                                 }
                             }
-
-
         );
-
 
     }
 
