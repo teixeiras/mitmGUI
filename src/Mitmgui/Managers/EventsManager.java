@@ -29,36 +29,8 @@ public class EventsManager {
 
     public void setListView(ListView listView) {
         this.listView = listView;
-        listView.setItems(shared.data);
-        listView.setCellFactory(new Callback<ListView<EventsModel>, ListCell<EventsModel>>() {
-                                    @Override
-                                    public ListCell<EventsModel> call(ListView<EventsModel> list) {
-                                        return new EventsManager.EventsModelCell();
-                                    }
-                                }
-
-
-        );
-
-
     }
 
-    class EventsModelCell extends ListCell<EventsModel> {
-        {
-            setMaxWidth(Control.USE_PREF_SIZE);
-            prefWidthProperty().bind(listView.widthProperty().subtract(2));
-        }
-        @Override
-        public void updateItem(EventsModel item, boolean empty) {
-            super.updateItem(item, empty);
-            if (item == null) {
-                return;
-            }
-            this.setText(item.getMessage());
-
-
-        }
-    }
 
     private final ObservableList<EventsModel> data = FXCollections.observableArrayList();
     public void addEvent(EventPackage eventPackage) {
@@ -85,5 +57,9 @@ public class EventsManager {
         }
         this.listView.refresh();
 
+    }
+
+    public ObservableList<EventsModel> getData() {
+        return data;
     }
 }

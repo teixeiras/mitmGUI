@@ -13,6 +13,7 @@ import Mitmgui.Network.Requests.FlowsRequests;
 import Mitmgui.Network.Requests.SettingsRequest;
 import Mitmgui.Network.UpdatesSocketHandler;
 import Mitmgui.UI.AlertHelper;
+import Mitmgui.UI.EventsDataSource;
 import Mitmgui.UI.FlowDetailsDataSource;
 import com.sun.tools.javac.comp.Flow;
 import javafx.beans.binding.Bindings;
@@ -44,7 +45,7 @@ public class MainController{
     Stage stage;
     UpdatesSocketHandler socketHandler;
     FlowDetailsDataSource datasource;
-
+    EventsDataSource eventsDataSource;
     public MainController() {
 
     }
@@ -71,7 +72,48 @@ public class MainController{
             AlertHelper.exception("Failed trying to resume", "The request resume has failed, try it again, later", e);
         }
     }
+    @FXML
+    private void onDebugEventAction(ActionEvent event) {
+        try {
+            CheckBox chk = (CheckBox) event.getSource();
+            if (chk.isSelected()) {
+                eventsDataSource.addFilter(EventsDataSource.LVL_DEBUG);
+            } else {
+                eventsDataSource.removeFilter(EventsDataSource.LVL_DEBUG);
+            }
 
+        } catch (Exception e) {
+            AlertHelper.exception("Failed to add filter ", "There was a technical fail on application", e);
+        }
+    }
+    @FXML
+    private void onInfoEventAction(ActionEvent event) {
+        try {
+            CheckBox chk = (CheckBox) event.getSource();
+            if (chk.isSelected()) {
+                eventsDataSource.addFilter(EventsDataSource.LVL_INFO);
+            } else {
+                eventsDataSource.removeFilter(EventsDataSource.LVL_INFO);
+            }
+
+        } catch (Exception e) {
+            AlertHelper.exception("Failed to add filter ", "There was a technical fail on application", e);
+        }
+    }
+    @FXML
+    private void onWebEventAction(ActionEvent event) {
+        try {
+            CheckBox chk = (CheckBox) event.getSource();
+            if (chk.isSelected()) {
+                eventsDataSource.addFilter(EventsDataSource.LVL_WEB);
+            } else {
+                eventsDataSource.removeFilter(EventsDataSource.LVL_WEB);
+            }
+
+        } catch (Exception e) {
+            AlertHelper.exception("Failed to add filter ", "There was a technical fail on application", e);
+        }
+    }
     @FXML
     private void downloadAction(ActionEvent event) {
         try {
@@ -88,6 +130,15 @@ public class MainController{
             FlowsManager.shared.clear();
         } catch (Exception e) {
             AlertHelper.exception("Failed trying to clear Action", "The request clear has failed, try it again, later", e);
+        }
+    }
+
+    @FXML
+    private void clearEventsActions(ActionEvent event) {
+        try {
+            new FetchAPI().killAll();
+        } catch (Exception e) {
+            AlertHelper.exception("Failed trying to stop Action", "The request stop has failed, try it again, later", e);
         }
     }
 
@@ -157,7 +208,7 @@ public class MainController{
             Logger.error(e);
         }
         datasource = new FlowDetailsDataSource(new FlowModel(),detailsListVew);
-        EventsManager.shared.setListView(eventsList);
+        eventsDataSource = new EventsDataSource(eventsList);
     };
 
 
